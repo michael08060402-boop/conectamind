@@ -100,8 +100,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 modal.style.display = "flex";
                 document.body.classList.add("modal-open");
                 cerrar.focus();
+                loadMobilePdf();
             }
         });
+    });
+
+    let pdfViewer;
+    function loadMobilePdf() {
+        if (!window.matchMedia("(max-width: 1100px)").matches) return;
+        pdfViewer ??= import("./pdf-viewer.mjs");
+        pdfViewer.then(({ showPdf }) => showPdf(modal.querySelector(".pdf-pages"))).catch(() => {
+            pdfViewer = null;
+            modal.querySelector(".pdf-status").textContent = "No se pudo cargar el visor. Usa el enlace Abrir PDF original.";
+        });
+    }
+    window.matchMedia("(max-width: 1100px)").addEventListener("change", () => {
+        if (modal?.style.display === "flex") loadMobilePdf();
     });
 
     function closeModal() {
@@ -112,9 +126,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && modal?.style.display === "flex") closeModal();
-        if (event.key === "Tab" && modal?.style.display === "flex" && event.shiftKey && document.activeElement === cerrar) {
-            event.preventDefault();
-            modal.querySelector("iframe").focus();
+        if (event.key === "Tab" && modal?.style.display === "flex") {
+            const focusable = [...modal.querySelectorAll('button, a[href], [tabindex="0"], iframe')]
+                .filter(element => element.getClientRects().length);
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
         }
     });
 
