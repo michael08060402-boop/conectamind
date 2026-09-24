@@ -30,10 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         navLinks.forEach(link => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${currentId}`) {
-                link.classList.add("active");
-            }
+            const active = link.getAttribute("href") === `#${currentId}`;
+            link.classList.toggle("active", active);
+            if (active) link.setAttribute("aria-current", "location");
+            else link.removeAttribute("aria-current");
         });
     }
 
@@ -164,9 +164,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const setOpen = (open) => {
         navbar.classList.toggle("menu-open", open);
         toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute("aria-label", open ? "Cerrar men\u00fa" : "Abrir men\u00fa");
+        toggle.querySelector("span").textContent = "\u2630";
     };
     toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
-    navbar.querySelectorAll(".nav-link").forEach(link => link.addEventListener("click", () => setOpen(false)));
+    navbar.querySelectorAll(".nav-link").forEach(link => link.addEventListener("click", () => {
+        setOpen(false);
+        if (window.matchMedia("(max-width: 1200px)").matches) toggle.focus({ preventScroll: true });
+    }));
     document.addEventListener("click", event => { if (!navbar.contains(event.target)) setOpen(false); });
     document.addEventListener("keydown", event => {
         if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
@@ -174,5 +179,5 @@ document.addEventListener("DOMContentLoaded", () => {
             toggle.focus();
         }
     });
-    window.matchMedia("(max-width: 1100px)").addEventListener("change", () => setOpen(false));
+    window.matchMedia("(max-width: 1200px)").addEventListener("change", () => setOpen(false));
 });
