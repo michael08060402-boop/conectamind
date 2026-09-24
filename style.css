@@ -1153,182 +1153,133 @@ section p {
     transform: scale(1.05);
 }
 
-@media (max-width: 768px) {
 
-    /* 🔥 RESET PELIGROSO */
-    * {
-        max-width: 100%;
-    }
+/* Original service image layout (desktop). */
+.servicio-contenido { display: flex; align-items: center; gap: 40px; }
+.servicio-texto { flex: 1; }
+.servicio-imagen { flex: 0 0 280px; display: flex; justify-content: center; }
+.servicio-imagen img { width: 140%; max-width: 400px; height: auto; }
+.nav-toggle { display: none; }
+.phone-preview { display: contents; }
+.close-modal { border: 0; background: transparent; }
+.whatsapp-float img { width: 28px; height: 28px; object-fit: contain; }
+body.modal-open { overflow: hidden; }
 
-    /* HERO */
-    .hero-container {
-        flex-direction: column;
-        padding: 20px;
-        gap: 30px;
-    }
+/* Layout adjustments apply only to tablets and phones. */
+@media (max-width: 1100px) {
 
-    .btn-sobre-mi {
-        margin: 20px auto;     /* centro perfecto */
-        width: fit-content;   /* ajusta al texto */
-        max-width: 90%;
-    }
+:root { --header-height: 100px; --page-gutter: clamp(20px, 5vw, 80px); }
+html { scroll-padding-top: calc(var(--header-height) + 16px); }
+body { padding-top: 0; overflow-x: visible; }
+img { max-width: 100%; }
+section[id] { scroll-margin-top: 16px !important; }
+p { line-height: 1.65; }
+a, button { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible { outline: 3px solid #7c2d92; outline-offset: 5px; }
+.navbar { position: sticky; height: var(--header-height); padding: 10px var(--page-gutter); gap: 24px; }
+.nav-left { flex-shrink: 0; }
+.logo-circle { display: block; object-fit: contain; margin: 0; }
+.nav-center { gap: clamp(4px, 2vw, 32px); align-items: center; }
+.nav-link { padding: 12px 8px; font-size: .95rem; white-space: nowrap; }
+.nav-toggle { display: none; }
+.back-arrow { position: static; }
+.hero-bg, #sobre-mi, .servicios, .acerca-bg, .contacto-bg, .servicios-bg { padding: clamp(48px, 7vw, 96px) var(--page-gutter); min-height: auto; }
+.hero-container, .section-content, .acerca-container, .acerca-content { width: 100%; padding: 0; }
+.hero-text, .about-text, .servicio-texto { min-width: 0; }
+.hero-text h1, .hero-text p { margin-left: 0; }
+.hero-text h1 { line-height: 1.15; font-size: inherit; }
+.hero-text h1 br { display: none; }
+.titulo-manuscrito { display: block; transform: none; font-size: clamp(48px, 7vw, 100px); }
+.hero-text h1 span:not(.titulo-manuscrito), .hero-text h1 span:last-child { margin-top: 16px; font-size: clamp(30px, 4.5vw, 60px); }
+.hero-text p { font-size: clamp(18px, 2vw, 24px); }
+.btn-servicios { margin-left: 0; max-width: 100%; padding: 16px 28px; letter-spacing: 1px; text-align: center; }
+.hero-cards { max-width: 1200px; margin: 48px auto 0; gap: 20px; }
+.mini-card { margin: 0; font-size: 1rem; padding: 20px 24px; }
+.hero-porque-texto { margin-top: 32px; }
+.hero-porque-texto p { font-size: 1.1rem; }
+.about-text h2, .about-text p { margin-left: 0; }
+.about-text h2 { margin-top: 0; font-size: clamp(32px, 5vw, 64px); }
+.btn-sobre-mi { margin: 28px auto 0; padding: 14px 28px; max-width: 100%; }
+.servicios-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 32px; }
+.servicio-card { min-width: 0; padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; }
+.servicio-boton { align-self: flex-start; }
+.section-title, .acerca-title, .contacto-title, section h2 { font-size: clamp(28px, 3.5vw, 42px); overflow-wrap: break-word; }
+.section-subtitle, .acerca-subtitle { margin-bottom: 32px; }
+.about-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.about-card { width: 100%; min-width: 0; max-width: none; padding: 28px 24px; }
+.nota-importante { padding: 20px; line-height: 1.6; }
+.phones-container { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1100px; margin: 24px auto 0; gap: 24px; }
+.phone { width: 100%; margin: 0; min-width: 0; }
+.phone-frame { width: 100%; transform: none; }
+.phone-screen { left: 32.5%; top: 10%; width: 35%; height: 70%; }
+.phone-info { margin: 16px 0 0; flex-wrap: wrap; }
+.servicios-page-bg { padding: 48px var(--page-gutter); }
+.servicio-detalle { width: 100%; padding: clamp(24px, 4vw, 64px); }
+.servicio-contenido { display: flex; align-items: center; gap: 32px; }
+.servicio-texto { flex: 1; }
+.servicio-imagen { flex: 0 1 280px; min-width: 0; }
+.servicio-imagen img { display: block; width: 100%; height: auto; max-width: 320px; margin: auto; }
+.social-float { z-index: 900; right: 12px; }
+.whatsapp-float { z-index: 900; }
+.whatsapp-float img { width: 28px; height: 28px; object-fit: contain; }
+.modal-pdf { padding: 16px; z-index: 2000; }
+.modal-content { width: 100%; height: 85vh; height: 85dvh; padding: 56px 12px 12px; border-radius: 20px; }
+.close-modal { border: 0; background: transparent; width: 44px; height: 44px; top: 6px; right: 10px; }
+body.modal-open { overflow: hidden; }
 
-    .hero-text h1,
-    .hero-text p,
-    .btn-servicios {
-        margin-left: 0 !important;
-        transform: none !important;
-        text-align: left;
-    }
-
-    .titulo-manuscrito {
-        font-size: 3.2rem;
-        transform: none;
-    }
-
-    .hero-text h1 span:last-child {
-        font-size: 2rem;
-        margin-top: 10px;
-    }
-
-    /* BOTÓN */
-    .btn-servicios {
-        margin: 20px auto 0;
-        display: inline-block;
-        letter-spacing: 2px;
-    }
-
-    /* SERVICIOS */
-    .servicios-cards {
-        grid-template-columns: 1fr;
-        padding: 0 15px;
-    }
-
-    /* ACERCA */
-    .acerca-bg {
-        padding: 80px 15px;
-    }
-
-    .acerca-content {
-        padding: 0 15px;
-    }
-
-    /* ABOUT */
-    .section-content {
-        flex-direction: column;
-        padding: 0 15px;
-    }
-
-    .about-img img {
-        width: 100%;
-        max-width: 320px;
-        margin: 30px auto 0;
-    }
-
-    /* PHONE MOCKUP (EL MÁS PROBLEMÁTICO) */
-    .phones-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 50px;
-        margin-top: 20px;
-
-    }
-
-    .phone {
-        margin-left: 0;
-        width: 100%;
-        max-width: 500px;
-    }
-
-    .phone-frame {
-        width: 100%;
-        transform: none;
-    }
-
-    .phone-screen {
-        width: 35%;
-        height: 70%;
-        left: 32.5%;
-        top: 10%;
-    }
-
-    .phone-info {
-        margin-top: 15px;
-        margin-left: 0;
-        font-size: 14px;
-        justify-content: center;
-    }
-
-    /* SOCIAL FLOAT */
-    .social-float {
-        right: 8px;
-        padding: 10px 8px;
-    }
-
-    .social-icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    /* NAVBAR */
-    .navbar {
-        flex-direction: column;
-        height: auto;
-        padding: 15px;
-        gap: 10px;
-    }
-
-    .nav-center {
-        gap: 20px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-     .servicios-page-bg {
-        padding: 100px 20px;
-        gap: 50px;
-    }
-
-    .servicio-detalle {
-        padding: 30px 25px;
-        max-width: 100%;
-    }
-
-    .servicio-detalle h2 {
-        font-size: 1.6rem;
-    }
-
-    .servicio-detalle p {
-        font-size: 1rem;
-    }
-
-    .servicio-section {
-        scroll-margin-top: 200px;
-    }
-
-    
+@media (max-width: 1100px) {
+    :root { --header-height: 80px; }
+    .logo-circle { width: 144px; height: 60px; }
+    .navbar { padding-inline: 20px; }
+    .nav-toggle { display: inline-flex; align-items: center; gap: 10px; margin-left: auto; min-height: 44px; padding: 10px 16px; border: 1px solid #7c6288; border-radius: 12px; background: #ffffffb3; color: #4b2c5e; font-size: 1rem; cursor: pointer; }
+    .nav-center { display: none; position: absolute; top: 100%; left: 0; right: 0; padding: 16px 20px; background: #e0d8eb; box-shadow: 0 12px 20px #0002; max-height: calc(100dvh - var(--header-height)); overflow-y: auto; }
+    .navbar.menu-open .nav-center { display: flex; flex-direction: column; align-items: stretch; gap: 4px; }
+    .nav-link { display: block; white-space: normal; min-height: 44px; }
+    .social-float { position: static; transform: none; flex-direction: row; justify-content: center; width: fit-content; max-width: calc(100% - 40px); margin: 24px auto 100px; }
+    .about-cards { grid-template-columns: 1fr; max-width: 680px; margin-inline: auto; }
+    .servicio-contenido { flex-direction: column; align-items: stretch; }
+    .servicio-imagen { flex-basis: auto; width: min(100%, 280px); margin: auto; }
+}
+@media (max-width: 600px) {
+    .hero-bg { background-position: 60% center; }
+    .hero-cards, .servicios-cards, .phones-container { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+    .hero-cards { text-align: center; }
+    .btn-servicios { width: 100%; font-size: 18px; }
+    .section-content { flex-direction: column; gap: 24px; }
+    .about-text p { margin-top: 20px; font-size: 1rem; }
+    .phone { max-width: 340px; margin-inline: auto; }
+    .whatsapp-float { right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); width: 56px; height: 56px; padding: 14px; }
+    .whatsapp-label { display: none; }
+    .back-arrow { width: 48px; height: 48px; }
+}
+@media (hover: none) {
+    .mini-card:hover, .servicio-card:hover, .about-card:hover, .servicio-detalle:hover, .phone:hover, .btn-servicios:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 
-.servicio-contenido {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-}
+.phone-preview { display: block; position: relative; }
+.phone-preview .phone-screen { top: 12%; height: 78.4%; }
 
-/* TEXTO */
-.servicio-texto {
-    flex: 1;
-}
-
-/* IMAGEN */
-.servicio-imagen {
-    flex: 0 0 280px; /* 🔥 ancho fijo de la imagen */
-    display: flex;
-    justify-content: center;
-}
-
-.servicio-imagen img {
-    width: 140% !important;
-    max-width: 400px !important; /* 🔥 AJUSTA ESTE VALOR */
-    height: auto;
+    /* Mobile illustrations remain behind the content without adding height. */
+    .hero-bg, #sobre-mi {
+        background-color: #f8fcfd;
+        background-repeat: no-repeat;
+        background-position: center, right center;
+        background-size: cover, auto clamp(360px, 85vw, 680px);
+    }
+    .hero-bg {
+        background-image: linear-gradient(90deg, rgba(248,252,253,.92), rgba(248,252,253,.55)), url("fotos/fondotodo.png");
+    }
+    #sobre-mi {
+        background-image: linear-gradient(90deg, rgba(248,252,253,.94), rgba(248,252,253,.65)), url("fotos/sobremi.png");
+    }
+    .hero-text, .about-text { width: 100%; }
+    .hero-text p, .about-text p { max-width: 680px; }
+    .hero-container, .section-content { max-width: 800px; }
+    .phone-preview { aspect-ratio: 1; }
+    .phone-preview .phone-screen { left: 32%; top: 12%; width: 36%; height: 76%; border-radius: 8%; }
+    .phone-frame { position: relative; width: 100%; height: auto; }
+    .logo-circle { object-fit: cover; }
 }

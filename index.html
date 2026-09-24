@@ -12,10 +12,11 @@
 <!-- NAVBAR -->
 <nav class="navbar">
     <div class="nav-left">
-        <img src="fotos/central.png" class="logo-circle">
+        <img src="fotos/central.png" class="logo-circle" alt="Conecta Mind">
     </div>
 
-    <ul class="nav-center">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"><span aria-hidden="true">&#9776;</span> Men&uacute;</button>
+    <ul class="nav-center" id="primary-navigation">
         <li><a href="#inicio" class="nav-link">INICIO</a></li>  
         <li><a href="#sobre-mi" class="nav-link">SOBRE MÍ</a></li>
         <li><a href="#servicios" class="nav-link">SERVICIOS</a></li>
@@ -214,7 +215,7 @@
             . Los servicios no constituyen terapia psicológica, evaluación clínica ni diagnóstico,
              ni sustituyen la atención psicológica profesional.
 </div>
-
+    </div>
 </section>
 
 <div class="section-divider"></div>
@@ -227,9 +228,11 @@
     <div class="phones-container">
 
         <div class="phone">
+            <div class="phone-preview">
             <img src="fotos/iphonermv.png" class="phone-frame" alt="iPhone Facebook">
             <img src="fotos/fperfil.png" class="phone-screen" alt="Facebook">
 
+            </div>
             <div class="phone-info">
                 <img src="fotos/fcrmv.png" class="app-icon">
                 <span>@ConectaMind</span>
@@ -237,9 +240,11 @@
         </div>
 
         <div class="phone">
+            <div class="phone-preview">
             <img src="fotos/iphonermv.png" class="phone-frame" alt="iPhone Instagram">
             <img src="fotos/iperfil.png" class="phone-screen" alt="Instagram">
 
+            </div>
             <div class="phone-info">
                 <img src="fotos/instl.png" class="app-icon">
                 <span>@Conecta.mind26</span>
@@ -247,9 +252,11 @@
         </div>
 
         <div class="phone">
+            <div class="phone-preview">
             <img src="fotos/iphonermv.png" class="phone-frame" alt="iPhone TikTok">
             <img src="fotos/tperfil.png" class="phone-screen" alt="TikTok">
 
+            </div>
             <div class="phone-info">
                 <img src="fotos/tikrmv.png" class="app-icon">
                 <span>@ConectaMind26</span>
@@ -260,21 +267,21 @@
 </section>
 
 <!-- WHATSAPP -->
-<a href="https://wa.me/51906662361" class="whatsapp-float" target="_blank">
+<a href="https://wa.me/51906662361" class="whatsapp-float" aria-label="Iniciar chat en WhatsApp" target="_blank">
     <img src="fotos/whats-removebg-preview.png" alt="WhatsApp">
-    Iniciar Chat
+    <span class="whatsapp-label">Iniciar Chat</span>
 </a>
 
 <script src="script.js"></script>
 
-<div id="modal-pdf" class="modal-pdf">
+<div id="modal-pdf" class="modal-pdf" role="dialog" aria-modal="true" aria-label="Curr&iacute;culum de Alanis G&aacute;lvez">
     <div class="modal-content">
-        <span class="close-modal">&times;</span>
+        <button type="button" class="close-modal" aria-label="Cerrar curr&iacute;culum">&times;</button>
 
         <iframe 
             src="CV-ESTUDIANTE DE PSICOLOGIA (1).pdf"
             frameborder="0"
-            class="pdf-frame">
+            class="pdf-frame" title="Curr&iacute;culum de Alanis G&aacute;lvez">
         </iframe>
     </div>
 </div>
@@ -293,9 +300,6 @@
         <img src="fotos/tikrmv.png" alt="TikTok">
     </a>
 
-    <a href="https://wa.me/51906662361" target="_blank" class="social-icon whatsapp">
-        <img src="fotos/wsprmv.png" alt="WhatsApp">
-    </a>
 </div>
 </body>
 </html>

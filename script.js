@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
         sections = document.querySelectorAll("section[id]");
     }
 
-    const OFFSET = 200; // altura aproximada del navbar
+    const navbar = document.querySelector(".navbar");
 
     function activarLink() {
         let currentId = "";
 
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - OFFSET;
+            const sectionTop = section.offsetTop - navbar.offsetHeight - 20;
             const sectionHeight = section.offsetHeight;
 
             if (
@@ -38,7 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Scroll
-    window.addEventListener("scroll", activarLink);
+    window.addEventListener("scroll", activarLink, { passive: true });
+    window.addEventListener("resize", activarLink);
 
     // Click
     navLinks.forEach(link => {
@@ -95,22 +96,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
     abrirModalBtns.forEach(btn => {
         btn.addEventListener("click", () => {
-            if (modal) modal.style.display = "flex";
+            if (modal) {
+                modal.style.display = "flex";
+                document.body.classList.add("modal-open");
+                cerrar.focus();
+            }
         });
+    });
+
+    function closeModal() {
+        modal.style.display = "none";
+        document.body.classList.remove("modal-open");
+        abrirModalBtns[0]?.focus();
+    }
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && modal?.style.display === "flex") closeModal();
+        if (event.key === "Tab" && modal?.style.display === "flex" && event.shiftKey && document.activeElement === cerrar) {
+            event.preventDefault();
+            modal.querySelector("iframe").focus();
+        }
     });
 
     if (cerrar) {
         cerrar.addEventListener("click", () => {
-            modal.style.display = "none";
+            closeModal();
         });
     }
 
     if (modal) {
         modal.addEventListener("click", (e) => {
             if (e.target === modal) {
-                modal.style.display = "none";
+                closeModal();
             }
         });
     }
 
+});
+
+/* Compact navigation, shared by the home and service pages. */
+document.addEventListener("DOMContentLoaded", () => {
+    const navbar = document.querySelector(".navbar");
+    const toggle = navbar.querySelector(".nav-toggle");
+    const setOpen = (open) => {
+        navbar.classList.toggle("menu-open", open);
+        toggle.setAttribute("aria-expanded", String(open));
+    };
+    toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
+    navbar.querySelectorAll(".nav-link").forEach(link => link.addEventListener("click", () => setOpen(false)));
+    document.addEventListener("click", event => { if (!navbar.contains(event.target)) setOpen(false); });
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+            setOpen(false);
+            toggle.focus();
+        }
+    });
+    window.matchMedia("(max-width: 1100px)").addEventListener("change", () => setOpen(false));
 });
