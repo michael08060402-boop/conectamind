@@ -1,7 +1,7 @@
 // Local PDF.js keeps the viewer independent of third-party services.
-import { getDocument, GlobalWorkerOptions } from './vendor/pdfjs/pdf.min.mjs';
+import { getDocument, GlobalWorkerOptions } from '../../vendor/pdfjs/pdf.min.mjs';
 
-GlobalWorkerOptions.workerSrc = new URL('./vendor/pdfjs/pdf.worker.min.mjs', import.meta.url).href;
+GlobalWorkerOptions.workerSrc = new URL('../../vendor/pdfjs/pdf.worker.min.mjs', import.meta.url).href;
 const loading = new WeakMap();
 
 export function showPdf(container) {

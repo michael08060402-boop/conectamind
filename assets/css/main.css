@@ -1,9 +1,10 @@
+@import url("./typography.css");
+
 /* ================== RESET ================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
 }
 
 :root { --header-height: 100px; }
@@ -114,7 +115,7 @@ body {
 
 /* ================== HERO ================== */
 .hero-bg {
-    background: #f8fcfd url("fotos/fondotodo.png") no-repeat right center / cover;
+    background: #f8fcfd url("../images/fondotodo.png") no-repeat right center / cover;
     min-height: calc(100svh - var(--header-height));
     padding: clamp(48px, 6vw, 100px) clamp(20px, 4vw, 60px);
     scroll-margin-top: 10px; /* altura del navbar */
@@ -151,7 +152,7 @@ body {
 }
 .titulo-manuscrito {
     display: block;
-    font-family: 'Parisienne', cursive !important;
+    font-family: var(--font-brand);
     font-size: clamp(48px, 5.2vw, 100px);
     color: #8b2f5f;
 }
@@ -218,7 +219,7 @@ hero-porque-texto {
 }
 
 .btn-servicios {
-    font-family: 'Pacifico', cursive;
+    font-family: var(--font-accent);
     margin-left: 0;
     padding: 14px 40px;
     display: inline-block;
@@ -261,7 +262,7 @@ section p {
 }
 
 .section-bg {
-    background: #f8fcfd url("fotos/sobremi.png") no-repeat right center / cover;
+    background: #f8fcfd url("../images/sobremi.png") no-repeat right center / cover;
     padding: 140px 0;
 }
 
@@ -274,7 +275,7 @@ section p {
     align-items: center;
 }
 .about-text h2 {
-    font-family: 'Pacifico', cursive;
+    font-family: var(--font-accent);
     margin-left: 30px;
     margin-top: 30px;
     font-size: 4rem;
@@ -335,7 +336,7 @@ section p {
 
 /* ================== SERVICIOS ================== */
 .servicios {
-    background: url("fotos/2serv.png") no-repeat center/cover;
+    background: url("../images/2serv.png") no-repeat center/cover;
     min-height: 100vh;
     padding: 50px 3%;
     scroll-margin-top: 100px;
@@ -431,7 +432,7 @@ section p {
 
 /* ================== ACERCA DE ================== */
 .acerca-bg {
-    background: url("fotos/serviciosss.png") no-repeat center/cover;;
+    background: url("../images/serviciosss.png") no-repeat center/cover;;
     min-height: 100vh;
     padding: 150px ;
     scroll-margin-top: 100px;
@@ -460,7 +461,7 @@ section p {
 
 /* ================== CONTACTO ================== */
 .contacto-bg {
-    background: url("fotos/serviciosss.png") no-repeat center/cover;
+    background: url("../images/serviciosss.png") no-repeat center/cover;
     min-height: 100vh;
     padding: 40px 0;
     scroll-margin-top: 90px; /* altura del navbar */
@@ -724,7 +725,7 @@ section p {
     min-height: 100vh;
     padding: 100px 0;
     scroll-margin-top: 90px; /* altura del navbar */
-    background: url("fotos/serviciosss.png") center/cover no-repeat;
+    background: url("../images/serviciosss.png") center/cover no-repeat;
     position: relative;
 }
 
@@ -852,7 +853,7 @@ section p {
 }
 
 .btn-sobre-mi {
-    font-family: 'Pacifico', cursive;
+    font-family: var(--font-accent);
     margin: 65px auto 0 173px; /* centra horizontalmente */
     padding: 12px 45px;
     border-radius: 30px;
@@ -1067,7 +1068,7 @@ section p {
 /* FONDO SERVICIOS */
 .servicios-page-bg {
     min-height: 100vh;
-    background-image: url("fotos/2serv.png");
+    background-image: url("../images/2serv.png");
     background-size: cover;
     background-position: center;
 
@@ -1268,10 +1269,10 @@ body.modal-open { overflow: hidden; }
         background-size: cover, cover;
     }
     .hero-bg {
-        background-image: linear-gradient(90deg, rgba(248,252,253,.92), rgba(248,252,253,.55)), url("fotos/fondotodo.png");
+        background-image: linear-gradient(90deg, rgba(248,252,253,.92), rgba(248,252,253,.55)), url("../images/fondotodo.png");
     }
     #sobre-mi {
-        background-image: linear-gradient(90deg, rgba(248,252,253,.94), rgba(248,252,253,.65)), url("fotos/sobremi.png");
+        background-image: linear-gradient(90deg, rgba(248,252,253,.94), rgba(248,252,253,.65)), url("../images/sobremi.png");
     }
     .hero-text, .about-text { width: 100%; }
     .hero-text p, .about-text p { max-width: 680px; }

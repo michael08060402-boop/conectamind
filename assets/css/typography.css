@@ -1,0 +1,11 @@
+/* Shared font loading and typography variables. */
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Parisienne&display=swap");
+:root {
+    --font-text: 'Segoe UI', Arial, sans-serif;
+    --font-heading: 'Segoe UI', Arial, sans-serif;
+    --font-brand: 'Parisienne', cursive;
+    --font-accent: 'Pacifico', cursive;
+}
+body { font-family: var(--font-text); }
+button, input, textarea, select { font: inherit; }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
