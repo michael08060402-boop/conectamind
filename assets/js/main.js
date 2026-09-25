@@ -14,20 +14,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const navbar = document.querySelector(".navbar");
 
+    let scheduled = false;
+
     function activarLink() {
-        let currentId = "";
+        scheduled = false;
+        const marker = navbar.getBoundingClientRect().bottom + 32;
+        let currentSection = sections[0];
 
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - navbar.offsetHeight - 20;
-            const sectionHeight = section.offsetHeight;
-
-            if (
-                window.scrollY >= sectionTop &&
-                window.scrollY < sectionTop + sectionHeight
-            ) {
-                currentId = section.getAttribute("id");
+            if (section.getBoundingClientRect().top <= marker) {
+                currentSection = section;
             }
         });
+
+        const atBottom = window.scrollY > 0 &&
+            window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+        if (atBottom) currentSection = sections[sections.length - 1];
+
+        const currentId = currentSection?.getAttribute("id") || "";
 
         navLinks.forEach(link => {
             const active = link.getAttribute("href") === `#${currentId}`;
@@ -37,9 +41,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function programarActivacion() {
+        if (scheduled) return;
+        scheduled = true;
+        window.requestAnimationFrame(activarLink);
+    }
+
     // Scroll
-    window.addEventListener("scroll", activarLink, { passive: true });
-    window.addEventListener("resize", activarLink);
+    window.addEventListener("scroll", programarActivacion, { passive: true });
+    window.addEventListener("resize", programarActivacion);
 
     // Click
     navLinks.forEach(link => {
@@ -58,6 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    window.addEventListener("load", programarActivacion);
+    window.addEventListener("hashchange", programarActivacion);
     activarLink();
 });
 
